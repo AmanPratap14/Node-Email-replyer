@@ -59,15 +59,12 @@ Obtain the client ID and client secret:
 
     Once you've created the OAuth client ID, you will see a dialog with the client ID and client secret.
     Make note of these values as they will be needed in your application.
-
-
-
- ![Alt Text](https://github.com/AmanPratap14/Node-Email-replyer/blob/main/Services_subscribe.jpeg)
- ![Alt](https://github.com/AmanPratap14/Node-Email-replyer/blob/main/Authentication%20successfull!.jpeg)
-
-
     Configure your application with the credentials:
 
     In your Node.js application, create a .env file in the root directory.
     Add the following lines to the .env file:
 
+
+
+ ![Alt Text](https://github.com/AmanPratap14/Node-Email-replyer/blob/main/Services_subscribe.jpeg)
+ ![Alt](https://github.com/AmanPratap14/Node-Email-replyer/blob/main/Authentication%20successfull!.jpeg)
