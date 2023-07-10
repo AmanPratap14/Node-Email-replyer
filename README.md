@@ -1,5 +1,12 @@
 # Node-Email-Reply
 
+
+1. start with npm init -y 
+2. then install requied packages:-
+3.   npm i npm install @google-cloud/local-auth express googleapis nodemon
+4. then add "start":"Nodemon app.js"
+5. to start your application. in Console: run:- npm start:
+
 This is the Node.js based app that is able to respond to emails sent to your Gmail mailbox while you’re out on a vacation.
 
 1. The app check for new emails in a given Gmail ID and send them reply,
