@@ -1,3 +1,4 @@
+//Importing required packages
 const express = require("express");
 const app = express();
 const port = 8000;
@@ -6,6 +7,9 @@ const fs = require("fs").promises;
 const { authenticate } = require("@google-cloud/local-auth");
 const { google } = require("googleapis");
 
+
+//defineing Scopes for auht and permissions required access from user to get mailId, mailbox
+
 const SCOPES = [
   "https://www.googleapis.com/auth/gmail.readonly",
   "https://www.googleapis.com/auth/gmail.send",
@@ -13,9 +17,11 @@ const SCOPES = [
   "https://mail.google.com/",
 ];
 
+
+// get path
 app.get("/", async (req, res) => {
   const credentials = await fs.readFile("credentials.json");
-
+//auth token for acessing gmail
   const auth = await authenticate({
     keyfilePath: path.join(__dirname, "credentials.json"),
     scopes: SCOPES,
@@ -23,20 +29,24 @@ app.get("/", async (req, res) => {
 
   console.log("THis is AUTH = ", auth);
 
+  //obj for using gmailApi
   const gmail = google.gmail({ version: "v1", auth });
 
   const response = await gmail.users.labels.list({
     userId: "me",
   });
 
+//name of the Label
   const LABEL_NAME = "Vacation";
 
+  //to load creds
   async function loadCredentials() {
     const filePath = path.join(process.cwd(), "credentials.json");
     const content = await fs.readFile(filePath, { encoding: "utf8" });
     return JSON.parse(content);
   }
 
+  //checking if mails are unreplyed 
   // Get messages that have no prior replies
   async function getUnrepliedMessages(auth) {
     const gmail = google.gmail({ version: "v1", auth });
@@ -66,7 +76,7 @@ app.get("/", async (req, res) => {
 
     const replyTo = from.match(/<(.*)>/)[1];
     const replySubject = subject.startsWith("Re:") ? subject : `Re: ${subject}`;
-    const replyBody = `Hi,\n\nI'm currently on vacation and will get back to you soon.\n\nRegards,\n Garima Khatri`;
+    const replyBody = `Hi,\n\nI'm currently on vacation and will get back to you soon.\n\nRegards,\n Aman Pratap Singh`;
 
     const rawMessage = [
       `From: me`,
